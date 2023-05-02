@@ -63,12 +63,40 @@ class Color:
             
     def hue(rgb):
         """Identifies the base color of the RGB value."""
-        pass
+        nrgb = []
+        
+        for color in rgb:
+            new_color = color / 255
+            nrgb.append(new_color)
+        
+        max = max(nrgb)
+        min = min(nrgb)
+        
+        if (max - min == 0):
+            base = 0
+        elif (max == nrgb[0]):
+            base = 60 * (((nrgb[1]-nrgb[2]) / (max-min)) % 6)
+        elif (max == nrgb[1]):
+            base = 60 * (((nrgb[0]-nrgb[2]) / (max-min)) + 2)
+        else:
+            base = 60 * (((nrgb[0]-nrgb[1]) / (max-min)) + 4)
+            
+        if (base < 0):
+            base += 360
+            
+        return base
     
     def chroma(rgb):
         """Identifies the saturation of the RGB value."""
-        pass
+        
+        if (max - min == 0):
+            saturation = 0
+        else:
+            saturation = (max - min) / (1 - abs(max + min - 1))
+            
+        return saturation
     
     def light(rgb):
         """Identifies the brightness of the RGB value."""
-        pass
+        
+        return (max + min) / 2
