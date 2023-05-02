@@ -31,7 +31,23 @@ class Theory:
             
     def monochromatic(first_color, second_color, third_color):
         """A color theory that accepts 2-3 color values to test compatability by hue and light."""
-        pass
+        
+        if Theory.duo_set == True:
+            
+            if (Color.hue(first_color) == Color.hue(second_color)):
+                print("The given colors support the Monochromatic Color Theory.")
+                return True
+            else:
+                print("The give colors do not support the Monochromatic Color Theory.")
+                return False
+        else:
+            
+            if (Color.hue(first_color) == Color.hue(second_color) == Color.hue(third_color)): #does the double == work?
+                print("The given colors support the Monochromatic Color Theory.")
+                return True
+            else:
+                print("The given colors do not support the Monochromatic Color Theory.")
+                return False
         
     def analogous(first_color, second_color, third_color):
         """A color theory that accepts 3 color values to test compatability by hue and chroma."""
