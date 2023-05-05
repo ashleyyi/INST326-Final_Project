@@ -3,55 +3,40 @@ import sys
 
 class Theory:
     """Runs provided hexcode values through a series of appropriate theories to test compatability."""
-    count = 0
-    duo_set = False
     
-    def __init__(self, first_hex, second_hex, third_hex):
+    def __init__(self, hexcode):
         """Takes in a maximum number of three hexcode values and creates Color object."""
-        self.first_hex = first_hex
-        self.second_hex = second_hex
-        self.third_hex = third_hex
+        self.hexcode = hexcode
         
-        if first_hex is None:
+        if hexcode is None:
             # throw insufficient parameters error
             pass
         else:
-            self.first_color = Color(hexcode)
-        
-        if second_hex is None:
-            # throw insufficient parameters error
-            pass
-        else:
-            self.second_color = Color(hexcode)
-        
-        if third_hex is None:
-            duo_set = True
-        else:
-            self.third_color = Color(hexcode)
+            self.hexcode = Color(hexcode)
             
-    def monochromatic(first_color, second_color, third_color):
+    def monochromatic(rgb):
         """A color theory that accepts 2-3 color values to test compatability by hue and light."""
-        
-        if Theory.duo_set == True:
-            
-            if (Color.hue(first_color) == Color.hue(second_color)):
-                print("The given colors support the Monochromatic Color Theory.")
-                return True
-            else:
-                print("The give colors do not support the Monochromatic Color Theory.")
-                return False
-        else:
-            
-            if (Color.hue(first_color) == Color.hue(second_color) == Color.hue(third_color)): #does the double == work?
-                print("The given colors support the Monochromatic Color Theory.")
-                return True
-            else:
-                print("The given colors do not support the Monochromatic Color Theory.")
-                return False
+        pass
         
     def analogous(first_color, second_color, third_color):
         """A color theory that accepts 3 color values to test compatability by hue and chroma."""
-        pass
+        
+        if Theory.duo_set == True:
+            # throw insufficient parameters error
+            pass
+        else:
+            
+            if (Color.saturation(first_color) == Color.saturation(second_color) == Color.saturation(third_color)):
+                
+                if (Color.light(first_color) == Color.light(second_color) == Color.light(third_color)):
+                    print("The given colors support the Analogous Color Theory.")
+                    return True
+                else:  
+                    print("The given colors do not support the Analogous Color Theory.")
+                    return False
+            else:
+                print("The given colors do not support the Analogous Color Theory.")
+                return False
     
     def complementary(first_color, second_color, third_color):
         """A color theory that accepts 2 color values to test compatability by hue and saturation."""
@@ -69,14 +54,32 @@ class Color:
     """Uses the provided hexcode to identify properties of a color and store them in a Color class instance."""
     
     def __init__(self, hexcode):
+        # add docstrings
+        
+        self.rgb = Color.hex_to_rgb(hexcode)
+            
+        self.hsl = [Color.hue(self.rgb()), Color.chroma(self.rgb()), Color.light(self.rgb())]
+       
+    def hex_to_rgb(hexcode):
         """Converts the provided hexcode value into an RGB value."""
         
-        self.rgb = []
+        rgb = []
+        
         for sub_value in (0, 2, 4):
             value = hexcode[sub_value : sub_value + 2]
             
-            self.rgb.append(value)
+            rgb.append(value)
             
+        return rgb
+    
+    def rgb_to_hex(rgb):
+        """Converts the provided RGB tuple into a hexcode value."""
+        pass
+    
+    def hsl_to_rgb(hsl):
+        """Converts the HSL tuple into an RGB tuple."""
+        pass
+       
     def hue(rgb):
         """Identifies the base color of the RGB value."""
         nrgb = []
