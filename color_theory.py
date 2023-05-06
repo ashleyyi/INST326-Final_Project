@@ -16,38 +16,62 @@ class Theory:
             
     def monochromatic(rgb):
         """A color theory that accepts 2-3 color values to test compatability by hue and light."""
-        pass
         
-    def analogous(first_color, second_color, third_color):
+        if Color.light(rgb) >= 50:
+            
+            return rgb, Color.rgb_to_hex(Color.hsl_to_rgb(Color.hue(rgb), Color.chroma(rgb), Color.light(rgb) - 10))
+        else:
+            return rgb, Color.rgb_to_hex(Color.hsl_to_rgb(Color.hue(rgb), Color.chroma(rgb), Color.light(rgb) + 10))
+        
+    def analogous(rgb):
         """A color theory that accepts 3 color values to test compatability by hue and chroma."""
         
-        if Theory.duo_set == True:
-            # throw insufficient parameters error
-            pass
-        else:
+        left_color = Color.hue(rgb) + 30, Color.chroma(rgb), Color.light(rgb)
+        
+        if left_color[0] > 360:
+            left_color = 360 - left_color[0], left_color[1], left_color[2]
             
-            if (Color.saturation(first_color) == Color.saturation(second_color) == Color.saturation(third_color)):
-                
-                if (Color.light(first_color) == Color.light(second_color) == Color.light(third_color)):
-                    print("The given colors support the Analogous Color Theory.")
-                    return True
-                else:  
-                    print("The given colors do not support the Analogous Color Theory.")
-                    return False
-            else:
-                print("The given colors do not support the Analogous Color Theory.")
-                return False
+        right_color = Color.hue(rgb) - 30, Color.chroma(rgb), Color.light(rgb)
+        
+        if right_color[0] < 0:
+            right_color = 360 + right_color[0], right_color[1], right_color[2]
+            
+        return rgb, Color.hsl_to_rgb(left_color), Color.hsl_to_rgb(right_color)
     
-    def complementary(first_color, second_color, third_color):
+    def complementary(rgb):
         """A color theory that accepts 2 color values to test compatability by hue and saturation."""
+        
+        second_color = Color.hue(rgb) - 180, Color.chroma(rgb), Color.light(rgb)
+        
+        if second_color[0] < 0:
+            second_color = 360 - second_color[0], second_color[1], second_color[2]
+            
+        return rgb, second_color
+    
+    def split_complementary(rgb):
+        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
+        
+        split = Theory.analogous(Theory.complementary(rgb)[1])
+        
+        return rgb, split[1], split[2]
+    
+    def triad(rgb):
+        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
+        
+        left_color = Color.hue(rgb) + 120, Color.chroma(rgb), Color.light(rgb)
+        
+        if left_color[0] > 360:
+            left_color = 360 - left_color[0], left_color[1], left_color[2]
+            
+        right_color = Color.hue(rgb) - 120, Color.chroma(rgb), Color.light(rgb)
+        
+        if right_color < 0:
+            right_color = 360 + right_color[0], right_color[1], right_color[2]
+            
+    def tetradic(rgb):
         pass
     
-    def split_complementary(first_color, second_color, third_color):
-        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
-        pass
-    
-    def triad(first_color, second_color, third_color):
-        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
+    def square(rgb):
         pass
                                      
 class Color:
