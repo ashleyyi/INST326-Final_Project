@@ -33,7 +33,7 @@ class Color:
         hex_code = "#" 
         
         for value in rgb:
-            print("done")
+            
             hex_code += ('{:02X}'.format(value))
         
         return hex_code
@@ -49,3 +49,7 @@ class Color:
 if __name__ == "__main__":
         
     test = Color('#1ECBE1')
+    
+    
+    
+    
