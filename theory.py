@@ -48,28 +48,30 @@ class Theory:
             
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(second_color)
     
-    def split_complementary(self, rgb):
+    def split_complementary(self):
         """A color theory that accepts 3 color values to test compatability by hue and saturation."""
         
-        split = Theory.analogous(Theory.complementary(rgb)[1])
+        split = Theory.analogous
         
-        return rgb, split[1], split[2]
+        return color.Color.hls_to_hex(self.color_obj.hls), split[1], split[2]
     
     def triad(self, rgb):
         """A color theory that accepts 3 color values to test compatability by hue and saturation."""
         
-        left_color = Color.hue(rgb) + 120, Color.chroma(rgb), Color.light(rgb)
+        left_color = self.color_obj.hls[0] + 0.33, self.color_obj.hls[1], self.color_obj.hls[2]
         
-        if left_color[0] > 360:
-            left_color = 360 - left_color[0], left_color[1], left_color[2]
+        if left_color[0] > 1:
+            left_color = 1 - left_color[0], left_color[1], left_color[2]
             
-        right_color = Color.hue(rgb) - 120, Color.chroma(rgb), Color.light(rgb)
+        right_color = self.color_obj.hls[0] - 0.33, self.color_obj.hls[1], self.color_obj.hls[2]
         
         if right_color < 0:
-            right_color = 360 + right_color[0], right_color[1], right_color[2]
+            right_color = 1 + right_color[0], right_color[1], right_color[2]
+            
+        return color.Color.hls_to_hex(self.color_obj.hls), left_color, right_color
             
     def tetradic(self, rgb):
-        pass
+        pass  
     
     def square(self, rgb):
         pass
