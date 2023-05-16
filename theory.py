@@ -104,7 +104,24 @@ class Theory:
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(secondary), color.Color.hls_to_hex(dom_com), color.Color.hls_to_hex(sec_com)
     
     def square(self):
-        pass
+        # add docstrings
+        
+        dom_com = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
+        
+        if dom_com[0] < 0:
+            dom_com = 1 + dom_com[0], dom_com[1], dom_com[2]
+        
+        secondary = self.color_obj.hls[0] - 0.25, self.color_obj.hls[1], self.color_obj.hls[2]
+        
+        if secondary[0] < 0:
+            secondary = 1 + secondary[0], secondary[1], secondary[2]
+            
+        sec_com = secondary[0] - 0.5, secondary[1], secondary[2]
+        
+        if sec_com[0] < 0:
+            sec_com = 1 + sec_com[0], sec_com[1], sec_com[2]
+            
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(secondary), color.Color.hls_to_hex(dom_com), color.Color.hls_to_hex(sec_com)
     
 if __name__ == "__main__":
         
