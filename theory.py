@@ -7,8 +7,8 @@ class Theory:
     
     def __init__(self, hexcode):
         """Takes in a maximum number of three hexcode values and creates Color object."""
-        self.hexcode = hexcode
         
+        self.hexcode = hexcode
         self.color_obj = color.Color(self.hexcode)
             
     def monochromatic(self):
@@ -26,17 +26,17 @@ class Theory:
     def analogous(self):
         """A color theory that accepts 3 color values to test compatability by hue and chroma."""
         
-        left_color = hls[0] + 0.083, hls[1], hls[2]
+        left_color = self.color_obj.hls[0] + 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
         
         if left_color[0] > 1:
             left_color = 1 - left_color[0], left_color[1], left_color[2]
             
-        right_color = Color.hue(rgb) - 30, Color.chroma(rgb), Color.light(rgb)
+        right_color = self.color_obj.hls[0] - 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
         
         if right_color[0] < 0:
             right_color = 360 + right_color[0], right_color[1], right_color[2]
             
-        return rgb, Color.hsl_to_rgb(left_color), Color.hsl_to_rgb(right_color)
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_color), color.Color.hls_to_hex(right_color)
     
     def complementary(self):
         """A color theory that accepts 2 color values to test compatability by hue and saturation."""
@@ -78,4 +78,4 @@ if __name__ == "__main__":
         
     test = Theory('#1ECBE1')
     
-    print(test.monochromatic())
+    print(test.analogous())
