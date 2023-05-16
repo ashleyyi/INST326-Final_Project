@@ -41,12 +41,12 @@ class Theory:
     def complementary(self):
         """A color theory that accepts 2 color values to test compatability by hue and saturation."""
         
-        second_color = Color.hue(rgb) - 180, Color.chroma(rgb), Color.light(rgb)
+        second_color = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
         
         if second_color[0] < 0:
-            second_color = 360 - second_color[0], second_color[1], second_color[2]
+            second_color = 1 - second_color[0], second_color[1], second_color[2]
             
-        return rgb, second_color
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(second_color)
     
     def split_complementary(self, rgb):
         """A color theory that accepts 3 color values to test compatability by hue and saturation."""
