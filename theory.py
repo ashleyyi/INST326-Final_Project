@@ -34,7 +34,7 @@ class Theory:
         right_color = self.color_obj.hls[0] - 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
         
         if right_color[0] < 0:
-            right_color = 360 + right_color[0], right_color[1], right_color[2]
+            right_color = 1 + right_color[0], right_color[1], right_color[2]
             
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_color), color.Color.hls_to_hex(right_color)
     
