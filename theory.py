@@ -51,11 +51,24 @@ class Theory:
     def split_complementary(self):
         """A color theory that accepts 3 color values to test compatability by hue and saturation."""
         
-        split = Theory.analogous
+        com = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
         
-        return color.Color.hls_to_hex(self.color_obj.hls), split[1], split[2]
+        if com[0] < 0:
+            com = 1 - com[0], com[1], com[2]
+            
+        left_com = com[0] - 0.083, com[1], com[2]
+        
+        if left_com[0] < 0:
+            left_com = 1 + left_com[0], left_com[1], left_com[2]
+            
+        right_com = com[0] + 0.083, com[1], com[2]
+        
+        if right_com[0] > 1: 
+            right_com = 1 - right_com[0], right_com[1], right_com[2]
+        
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_com), color.Color.hls_to_hex(right_com)
     
-    def triad(self, rgb):
+    def triad(self):
         """A color theory that accepts 3 color values to test compatability by hue and saturation."""
         
         left_color = self.color_obj.hls[0] + 0.33, self.color_obj.hls[1], self.color_obj.hls[2]
@@ -68,12 +81,29 @@ class Theory:
         if right_color < 0:
             right_color = 1 + right_color[0], right_color[1], right_color[2]
             
-        return color.Color.hls_to_hex(self.color_obj.hls), left_color, right_color
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_color), color.Color.hls_to_hex(right_color)
             
-    def tetradic(self, rgb):
-        pass  
+    def tetradic(self):
+        # add docstrings
+        
+        dom_com = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
+        
+        if dom_com[0] < 0:
+            dom_com = 1 + dom_com[0], dom_com[1], dom_com[2]
+        
+        secondary = self.color_obj.hls[0] - 0.166, self.color_obj.hls[1], self.color_obj.hls[2]
+        
+        if secondary[0] < 0:
+            secondary = 1 + secondary[0], secondary[1], secondary[2]
+            
+        sec_com = secondary[0] - 0.5, secondary[1], secondary[2]
+        
+        if sec_com[0] < 0:
+            sec_com = 1 + sec_com[0], sec_com[1], sec_com[2]
+            
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(secondary), color.Color.hls_to_hex(dom_com), color.Color.hls_to_hex(sec_com)
     
-    def square(self, rgb):
+    def square(self):
         pass
     
 if __name__ == "__main__":
