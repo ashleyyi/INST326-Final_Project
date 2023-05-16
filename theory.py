@@ -127,4 +127,4 @@ if __name__ == "__main__":
         
     test = Theory('#1ECBE1')
     
-    print(test.triad())
+    print(test.square())
