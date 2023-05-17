@@ -207,6 +207,6 @@ class Theory:
         print(sub_theories)
     
 if __name__ == "__main__":
-    """When called by command line, takes first argument and calls the Theory class."""
+    """Takes first argument from command line and calls the color_theory method of the Theory class."""
         
     Theory(sys.argv[1]).color_theory()
