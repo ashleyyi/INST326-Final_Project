@@ -67,13 +67,12 @@ class TestColorTheory(unittest.TestCase):
     def test_tetradic(self): 
         theory1_tetradic = theory.Theory('#B94685').tetradic()
         
-        self.assertTupleEqual(('#B94685', '#B9B346', '#46B97A', '#464BB9'), theory1_tetradic) 
+        self.assertTupleEqual(('#B94685', '#B346B9', '#B9464C', '#4CB946', '#46B9B3'), theory_tetradic)
         
     def test_square(self): 
-        theory1_square = 
-        
-        
-        
+        theory1_square = theory.Theory('#B94685').square()
+       
+        self.assertTupleEqual(('#B94685', '#B9B346', '#46B97A', '#464CB9'), theory1_square)
     
     
 if __name__ == '__main__':
