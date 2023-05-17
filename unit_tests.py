@@ -47,7 +47,11 @@ class TestColorTheory(unittest.TestCase):
     def test_analogous1(self):
         theory1_analogous = theory.Theory('#B94685').analogous()
         
-        self.assertTupleEqual(('#B94685', '#B9464B', '#B346B9'), theory1_analogous)
+        self.assertTupleEqual(('#B94685', '#B9464B', '#B346B9'), theory1_analogous) 
+        
+    def test_complementary1(self): 
+        
+        self.assertTupleEqual(('#B94685', '#46B97A'), theory1_complementary) 
     
 if __name__ == '__main__':
     unittest.main()
