@@ -124,6 +124,11 @@ class Theory:
             
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(secondary), color.Color.hls_to_hex(dom_com), color.Color.hls_to_hex(sec_com)
     
+    def color_theory(self):
+        # add docstrings
+        
+        pass
+    
 if __name__ == "__main__":
         
     test = Theory('#1ECBE1')
