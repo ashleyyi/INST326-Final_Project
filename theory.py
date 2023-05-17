@@ -4,22 +4,30 @@ import color
 import sys
 
 class Theory:
-    """Runs provided hexcode values through a series of appropriate theories to test compatability."""
+    """Runs provided hexcode values through a series of appropriate theories to test compatability.
+    
+    Attributes: hexcode, a String that defines the hex code color provided by the user from command line
+                color_obj, a Color object created with the given hex code parameter"""
     
     def __init__(self, hexcode):
         """Takes in a maximum number of three hexcode values and creates Color object.
-        adding more"""
+        
+        Args: hexcode, a String that defines the hex code color provided by the user from command line
+              color_obj, a Color object created with the given hex code parameter
+              
+        Side effects: instantiates the hexcode String and color_obj object of the Theory class"""
         
         self.hexcode = hexcode
         self.color_obj = color.Color(self.hexcode)
             
     def monochromatic(self):
-        # docstrings
+        
         
         if self.color_obj.hls[1] >= 0.6:
             new_hls = self.color_obj.hls[0], self.color_obj.hls[1] - 0.1, self.color_obj.hls[2]
             
             return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(new_hls)
+        
         else:
             new_hls = self.color_obj.hls[0], self.color_obj.hls[1] + 0.1, self.color_obj.hls[2]
             
