@@ -13,7 +13,6 @@ class Theory:
         """Takes a hexcode value and creates Color object.
         
         Args: hexcode, a String that defines the hex code color provided by the user from command line
-              color_obj, a Color object created with the given hex code parameter
               
         Side effects: instantiates the hexcode String and color_obj object of the Theory class"""
         
