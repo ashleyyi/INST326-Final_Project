@@ -50,8 +50,16 @@ class TestColorTheory(unittest.TestCase):
         self.assertTupleEqual(('#B94685', '#B9464B', '#B346B9'), theory1_analogous) 
         
     def test_complementary1(self): 
+        theory1_complementary = theory.Theory('#B94685').complementary() 
         
-        self.assertTupleEqual(('#B94685', '#46B97A'), theory1_complementary) 
+        self.assertTupleEqual(('#B94685', '#46B97A'), theory1_complementary)  
+        
+    def test_split_complementary(self): 
+        theory1_split_complementary = theory.Theory('#B94685').split_complementary() 
+        
+        self.assertTupleEqual(('#B94685', '#4BB946', '#B9B746'), theory1_split_complementary)
+        
+    
     
 if __name__ == '__main__':
     unittest.main()
