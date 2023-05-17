@@ -1,6 +1,7 @@
 import argparse
 import colorsys
 import color
+import sys
 
 class Theory:
     """Runs provided hexcode values through a series of appropriate theories to test compatability."""
@@ -87,22 +88,27 @@ class Theory:
     def tetradic(self):
         # add docstrings
         
-        dom_com = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
+        left = self.color_obj.hls[0] - 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
         
-        if dom_com[0] < 0:
-            dom_com = 1 + dom_com[0], dom_com[1], dom_com[2]
-        
-        secondary = self.color_obj.hls[0] - 0.166, self.color_obj.hls[1], self.color_obj.hls[2]
-        
-        if secondary[0] < 0:
-            secondary = 1 + secondary[0], secondary[1], secondary[2]
+        if left[0] < 0:
+            left = 1 + left[0], left[1], left[2]
             
-        sec_com = secondary[0] - 0.5, secondary[1], secondary[2]
+        left_com = left[0] - 0.5, left[1], left[2]
         
-        if sec_com[0] < 0:
-            sec_com = 1 + sec_com[0], sec_com[1], sec_com[2]
+        if left_com[0] < 0:
+            left_com = 1 + left_com[0], left_com[1], left_com[2]
             
-        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(secondary), color.Color.hls_to_hex(dom_com), color.Color.hls_to_hex(sec_com)
+        right = self.color_obj.hls[0] + 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
+        
+        if right[0] > 1:
+            right = 1 - right[0], right[1], right[2]
+        
+        right_com = right[0] - 0.5, right[1], right[2]
+        
+        if right_com[0] < 0:
+            right_com = 1 + right_com[0], right_com[1], right_com[2]
+            
+        return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left), color.Color.hls_to_hex(left_com), color.Color.hls_to_hex(right), color.Color.hls_to_hex(right_com)
     
     def square(self):
         # add docstrings
@@ -140,4 +146,4 @@ class Theory:
     
 if __name__ == "__main__":
         
-    Theory('#1ECBE1').color_theory()
+    Theory(sys.argv[1]).color_theory()
