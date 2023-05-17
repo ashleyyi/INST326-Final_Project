@@ -14,7 +14,7 @@ class Theory:
         
         Args: hexcode, a String that defines the hex code color provided by the user from command line
               
-        Side effects: instantiates the hexcode String and color_obj object of the Theory class"""
+        Side effects: instantiates the hexcode String and color_obj object attributes of the Theory class"""
         
         self.hexcode = hexcode
         self.color_obj = color.Color(self.hexcode)
