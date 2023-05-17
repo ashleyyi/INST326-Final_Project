@@ -127,10 +127,19 @@ class Theory:
     def color_theory(self):
         # add docstrings
         
-        pass
+        sub_theories = "Your color is " + self.hexcode + ", here are the alternate colors that you can use with this:"
+        sub_theories += "\nMonochromatic: " + self.monochromatic()[1]
+        sub_theories += "\nAnalogous: " + self.analogous()[1] + ", " + self.analogous()[2]
+        sub_theories += "\nComplementary: " + self.complementary()[1]
+        sub_theories += "\nSplit Complementary: " + self.split_complementary()[1] + ", " + self.split_complementary()[2]
+        sub_theories += "\nTriad: " + self.triad()[1] + ", " + self.triad()[2]
+        sub_theories += "\nTetradic: " + self.tetradic()[1] + ", " + self.tetradic()[2] + ", " + self.tetradic()[3]
+        sub_theories += "\nSquare: " + self.square()[1] + ", " + self.square()[2] + ", " + self.square()[3]
+        
+        print(sub_theories)
     
 if __name__ == "__main__":
         
-    test = Theory('#1ECBE1')
+    test = Theory('#12CBE1')
     
-    print(test.analogous())
+    test.color_theory()
