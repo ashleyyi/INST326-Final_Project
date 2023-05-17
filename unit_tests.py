@@ -29,13 +29,27 @@ class TestColorTheory(unittest.TestCase):
     def test_light2(self): 
         color2 = color.Color('#1974E6')  
         
-        self.assertAlmostEqual(0.804, color.hls[1], 3) 
+        self.assertAlmostEqual(0.804, color2.hls[1], 3) 
         
     def test_saturation2(self): 
         color2 = color.Color('#1974E6') 
         
-        self.assertAlmostEqual(0.5, color.hls[2], 3) 
+        self.assertAlmostEqual(0.5, color2.hls[2], 3) 
               
+    def test_hue3(self): 
+        color3 = color.Color('#B59D4A') 
+        
+        self.assertAlmostEqual(0.130, color3.hls[0], 3) 
+        
+    def test_light3(self): 
+        color3 = color.Color('#B59D4A') 
+        
+        self.assertAlmostEqual(0.5, color3.hls[1], 3) 
+        
+    def test_saturation3(self): 
+        color3 = color.Colory('#B59D4A') 
+        
+        self.assertAlmostEqual(0.42, color3.hls[2], 3) 
         
     # Testing theory class
     
