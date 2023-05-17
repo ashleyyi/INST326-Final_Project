@@ -140,6 +140,4 @@ class Theory:
     
 if __name__ == "__main__":
         
-    test = Theory('#12CBE1')
-    
-    test.color_theory()
+    Theory('#1ECBE1').color_theory()
