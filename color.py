@@ -8,12 +8,7 @@ class Color:
         # add docstrings
         self.hexcode = hexcode
         self.rgb = self.hex_to_rgb(self.hexcode)
-        
-        r = self.rgb[0] / 255
-        g = self.rgb[1] / 255
-        b = self.rgb[2] / 255
-            
-        self.hls = colorsys.rgb_to_hls(r, g, b)
+        self.hls = colorsys.rgb_to_hls(self.rgb[0] / 255, self.rgb[1] / 255, self.rgb[2] / 255)
        
     def hex_to_rgb(self, hexcode):
         """Converts the provided hexcode value into an RGB value."""
@@ -50,6 +45,4 @@ if __name__ == "__main__":
         
     test = Color('#1ECBE1')
     
-    
-    
-    
+    print(test.hls)
