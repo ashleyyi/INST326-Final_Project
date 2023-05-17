@@ -6,13 +6,14 @@ class Theory:
     """Runs provided hexcode values through a series of appropriate theories to test compatability."""
     
     def __init__(self, hexcode):
-        """Takes in a maximum number of three hexcode values and creates Color object."""
+        """Takes in a maximum number of three hexcode values and creates Color object.
+        adding more"""
         
         self.hexcode = hexcode
         self.color_obj = color.Color(self.hexcode)
             
     def monochromatic(self):
-        """A color theory that accepts 2-3 color values to test compatability by hue and light."""
+        # docstrings
         
         if self.color_obj.hls[1] >= 0.6:
             new_hls = self.color_obj.hls[0], self.color_obj.hls[1] - 0.1, self.color_obj.hls[2]
@@ -24,7 +25,7 @@ class Theory:
             return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(new_hls)
         
     def analogous(self):
-        """A color theory that accepts 3 color values to test compatability by hue and chroma."""
+        # docstrings
         
         left_color = self.color_obj.hls[0] + 0.083, self.color_obj.hls[1], self.color_obj.hls[2]
         
@@ -39,7 +40,7 @@ class Theory:
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_color), color.Color.hls_to_hex(right_color)
     
     def complementary(self):
-        """A color theory that accepts 2 color values to test compatability by hue and saturation."""
+        # docstrings
         
         second_color = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
         
@@ -49,7 +50,7 @@ class Theory:
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(second_color)
     
     def split_complementary(self):
-        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
+        # docstrings
         
         com = self.color_obj.hls[0] - 0.5, self.color_obj.hls[1], self.color_obj.hls[2]
         
@@ -69,7 +70,7 @@ class Theory:
         return color.Color.hls_to_hex(self.color_obj.hls), color.Color.hls_to_hex(left_com), color.Color.hls_to_hex(right_com)
     
     def triad(self):
-        """A color theory that accepts 3 color values to test compatability by hue and saturation."""
+        # add docstrings
         
         left_color = self.color_obj.hls[0] + 0.33, self.color_obj.hls[1], self.color_obj.hls[2]
         
@@ -127,4 +128,4 @@ if __name__ == "__main__":
         
     test = Theory('#1ECBE1')
     
-    print(test.square())
+    print(test.analogous())
