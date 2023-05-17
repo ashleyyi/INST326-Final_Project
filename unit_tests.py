@@ -57,7 +57,22 @@ class TestColorTheory(unittest.TestCase):
     def test_split_complementary(self): 
         theory1_split_complementary = theory.Theory('#B94685').split_complementary() 
         
-        self.assertTupleEqual(('#B94685', '#4BB946', '#B9B746'), theory1_split_complementary)
+        self.assertTupleEqual(('#B94685', '#4BB946', '#B9B746'), theory1_split_complementary) 
+        
+    def test_triad(self): 
+        theory1_triad = theory.Theory('#B94685').triad() 
+        
+        self.assertTupleEqual(('#B94685', '#85B946', '#4685B9'), theory1_triad) 
+        
+    def test_tetradic(self): 
+        theory1_tetradic = theory.Theory('#B94685').tetradic()
+        
+        self.assertTupleEqual(('#B94685', '#B9B346', '#46B97A', '#464BB9'), theory1_tetradic) 
+        
+    def test_square(self): 
+        theory1_square = 
+        
+        
         
     
     
