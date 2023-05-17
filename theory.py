@@ -10,7 +10,7 @@ class Theory:
                 color_obj, a Color object created with the given hex code parameter"""
     
     def __init__(self, hexcode):
-        """Takes in a maximum number of three hexcode values and creates Color object.
+        """Takes a hexcode value and creates Color object.
         
         Args: hexcode, a String that defines the hex code color provided by the user from command line
               color_obj, a Color object created with the given hex code parameter
